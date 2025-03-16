@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird Game</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #70c5ce;
+            overflow: hidden;
+        }
+        canvas {
+            border: 2px solid #000;
+        }
+    </style>
+</head>
+<body>
+  <center>
+<canvas id="gameCanvas" width="320" height="480"></canvas>
+
+<script>
+    // Set up the canvas and context
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Set up variables
+    let bird = { x: 50, y: 150, width: 30, height: 30, velocity: 0, gravity: 0.2, lift: -7 }; // Slower gravity and lift
+    let pipes = [];
+    let pipeWidth = 50;
+    let pipeGap = 100;
+    let pipeFrequency = 90;
+    let frame = 0;
+    let score = 0;
+    let isGameOver = false;
+
+    // Event listener for flapping
+    document.addEventListener('click', () => {
+        if (isGameOver) {
+            resetGame();
+        } else {
+            bird.velocity = bird.lift; // Apply the lift on click
+        }
+    });
+
+    // Draw the bird
+    function drawBird() {
+        ctx.fillStyle = '#FFD700';
+        ctx.fillRect(bird.x, bird.y, bird.width, bird.height);
+    }
+
+    // Create and move pipes
+    function createPipes() {
+        if (frame % pipeFrequency === 0) {
+            const height = Math.floor(Math.random() * (canvas.height - pipeGap));
+            pipes.push({ x: canvas.width, top: height, bottom: height + pipeGap });
+        }
+
+        pipes.forEach((pipe, index) => {
+            pipe.x -= 2;
+            if (pipe.x + pipeWidth < 0) {
+                pipes.splice(index, 1);
+                score++;
+            }
+            // Draw pipes
+            ctx.fillStyle = '#228B22';
+            ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
+            ctx.fillRect(pipe.x, pipe.bottom, pipeWidth, canvas.height - pipe.bottom);
+        });
+    }
+
+    // Check for collisions
+    function checkCollisions() {
+        // Check if bird hits the ground
+        if (bird.y + bird.height >= canvas.height) {
+            isGameOver = true;
+        }
+
+        // Check if bird hits pipes
+        pipes.forEach((pipe) => {
+            if (
+                bird.x + bird.width > pipe.x && bird.x < pipe.x + pipeWidth &&
+                (bird.y < pipe.top || bird.y + bird.height > pipe.bottom)
+            ) {
+                isGameOver = true;
+            }
+        });
+    }
+
+    // Update the game state
+    function update() {
+        if (!isGameOver) {
+            bird.velocity += bird.gravity;
+            bird.y += bird.velocity;
+
+            frame++;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBird();
+            createPipes();
+            checkCollisions();
+            ctx.fillStyle = '#000';
+            ctx.font = '20px Arial';
+            ctx.fillText('Score: ' + score, 10, 30);
+            requestAnimationFrame(update);
+        } else {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#fff';
+            ctx.font = '30px Arial';
+            ctx.fillText('Game Over', canvas.width / 4, canvas.height / 2);
+            ctx.fillText('Score: ' + score, canvas.width / 4, canvas.height / 1.5);
+            ctx.fillText('Click to Restart', canvas.width / 4, canvas.height / 1.2);
+        }
+    }
+
+    // Reset the game
+    function resetGame() {
+        bird.y = 150;
+        bird.velocity = 0;
+        pipes = [];
+        frame = 0;
+        score = 0;
+        isGameOver = false;
+        update();
+    }
+
+    // Start the game
+    update();
+</script>
+
+</body>
+</html>

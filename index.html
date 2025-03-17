@@ -6,7 +6,7 @@
     <title>My Artistic Hobbies: Painting & Drawing</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: cursive;
             margin: 0;
             padding: 0;
             background-color: beige;
@@ -96,6 +96,17 @@
         footer a:hover {
             text-decoration: underline;
         }
+         .red {
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: background-color 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -105,6 +116,18 @@
         <h1>Welcome to My Artistic World</h1>
         <p>Exploring the beauty of Painting & Drawing through creativity!</p>
     </header>
+        <div class="section" id="drawing">
+            <h2>Drawing: The Power of Lines</h2>
+            <h1 class="description">Drawing allows me to capture the fine details, creating intricate designs, portraits, and illustrations. It’s my way of exploring the world through pencil and charcoal, where every line has its purpose. Check out some of my sketches below!</h1>
+            <div class="gallery">
+                <img src="Goku.jpg" alt="Drawing 1">
+                <img src="Goku2.jpg" alt="Drawing 2">
+                <img src="Goku3.jpg" alt="Drawing 3">
+            </div>
+            <button class="action-button" onclick="alert('More sketches coming soon! Stay tuned.')">Explore More Drawings</button>
+        </div>
+
+    </div>
 
     <!-- Main Content Container -->
     <div class="container">
@@ -112,33 +135,28 @@
         <!-- Painting Section -->
         <div class="section" id="painting">
             <h2>Painting: A World of Colors</h2>
-            <p class="description">Painting is my way of expressing emotions, telling stories, and bringing a splash of colors to life. Each brushstroke holds a piece of my soul, from abstract landscapes to realistic portraits. Below are some of my favorite works!</p>
+            <h1 class="description">Painting is my way of expressing emotions, telling stories, and bringing a splash of colors to life. Each brushstroke holds a piece of my soul, from abstract landscapes to realistic portraits. Below are some of my favorite works!</h1>
             <div class="gallery">
-                <img src="https://via.placeholder.com/300x200.png?text=Painting+1" alt="Painting 1">
-                <img src="https://via.placeholder.com/300x200.png?text=Painting+2" alt="Painting 2">
-                <img src="https://via.placeholder.com/300x200.png?text=Painting+3" alt="Painting 3">
+                <img src="Paint1.jpg" alt="Painting 1">
+                <img src="Paint2.jpg" alt="Painting 2">
+                <img src="Paint3.jpg" alt="Painting 3">
             </div>
             <button class="action-button" onclick="alert('Stay tuned for more beautiful paintings!')">Discover More Paintings</button>
         </div>
 
         <!-- Drawing Section -->
-        <div class="section" id="drawing">
-            <h2>Drawing: The Power of Lines</h2>
-            <p class="description">Drawing allows me to capture the fine details, creating intricate designs, portraits, and illustrations. It’s my way of exploring the world through pencil and charcoal, where every line has its purpose. Check out some of my sketches below!</p>
-            <div class="gallery">
-                <img src="Goku.jpg" alt="Drawing 1">
-                <img src="https://via.placeholder.com/300x200.png?text=Drawing+2" alt="Drawing 2">
-                <img src="https://via.placeholder.com/300x200.png?text=Drawing+3" alt="Drawing 3">
-            </div>
-            <button class="action-button" onclick="alert('More sketches coming soon! Stay tuned.')">Explore More Drawings</button>
+  
         </div>
 
     </div>
-
+    <center>
+      <h2>Do you want to play a game?</h2>
+<a href="Flappy.html"><button class="red">Flappy bird</button></a>
+</center>
     <!-- Footer Section -->
     <footer>
         <p>&copy; 2025 My Artistic Journey. All Rights Reserved.</p>
-        <p>Want to know more about my creative process? <a href="mailto:example@example.com">Contact me</a>.</p>
+        <p>Want to know more about my creative process? <a href="mailto:dext4172010@gmail.com">Contact me</a>.</p>
     </footer>
 
 </body>

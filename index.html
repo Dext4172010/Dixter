@@ -1,49 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>My Webpage</title>
-<style>
-body {
-  
-  font-family: sans-serif;
-  display: flex; /* Enable flexbox for easy centering */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  min-height: 100vh; /* Make sure the body takes up the full viewport height */
-  margin: 0; /* Remove default body margins */
-  background-color: beige; /* Light gray background */
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Webpage</title>
+    <style>
+        /* Background Snow Animation */
+        @keyframes snowfall {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0.2;
+            }
+        }
 
-.container {
-  
-  text-align: center; /* Center text within the container */
-  background-color: red; /* White container background */
-  padding: 20px;
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-}
+        body {
+            font-family: sans-serif;
+            display: flex; /* Enable flexbox for easy centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            min-height: 100vh; /* Make sure the body takes up the full viewport height */
+            margin: 0; /* Remove default body margins */
+            background-color: gray; /* Light gray background */
+            overflow: hidden; /* Hide overflow for falling snowflakes */
+            position: relative;
+        }
 
-h1 {
-  color: white; /* Dark gray heading text */
-  font-size: 2em; /* Adjust heading size as needed */
-  margin-bottom: 15px; /* Add some spacing below the heading */
-}
+        /* Snowflake styling */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            background-color: #fff;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            animation: snowfall 10s linear infinite;
+        }
 
-button {
-  background-color: skyblue; /* Green button background */
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease; /* Smooth transition on hover */
-}
+        /* Snowflake size and position randomness */
+        .snowflake:nth-child(odd) {
+            animation-duration: 12s;
+            animation-delay: -1s;
+        }
 
-button:active {
-  background-color: blue; /* Darker green on hover */
-}
-  .gallery img {
+        .snowflake:nth-child(even) {
+            animation-duration: 8s;
+            animation-delay: 1s;
+        }
+
+        /* Container */
+        .container {
+            text-align: center; /* Center text within the container */
+            background-color: red; /* White container background */
+            padding: 20px;
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+            z-index: 10; /* Make sure the container is on top of the snowflakes */
+        }
+
+        h1 {
+            color: white; /* Dark gray heading text */
+            font-size: 2em; /* Adjust heading size as needed */
+            margin-bottom: 15px; /* Add some spacing below the heading */
+        }
+
+        button {
+            background-color: skyblue; /* Green button background */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease; /* Smooth transition on hover */
+        }
+
+        button:active {
+            background-color: blue; /* Darker green on hover */
+        }
+
+        .gallery img {
             width: 100px;
             height: 500px;
             object-fit: cover;
@@ -51,16 +91,41 @@ button:active {
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
             cursor: pointer;
             transition: transform 0.3s ease;
-</style>
+        }
+    </style>
 </head>
 <body>
-  <img src="Hitler.jpg" alt="cat hitler">
-<div class="container">
-  
-  <h1>WELCOME TO MY WEBPAGE!</h1>
-  <a href="Draw.html">
-  <button>Get started</button>
-  </a>
-</div>
+    <!-- Snowflakes -->
+    <div class="snowflakes">
+        <!-- Add 20 snowflakes with random positioning and durations -->
+        <div class="snowflake" style="left: 5%; animation-duration: 18s;"></div>
+        <div class="snowflake" style="left: 10%; animation-duration: 15s;"></div>
+        <div class="snowflake" style="left: 15%; animation-duration: 12s;"></div>
+        <div class="snowflake" style="left: 20%; animation-duration: 17s;"></div>
+        <div class="snowflake" style="left: 25%; animation-duration: 14s;"></div>
+        <div class="snowflake" style="left: 30%; animation-duration: 20s;"></div>
+        <div class="snowflake" style="left: 35%; animation-duration: 16s;"></div>
+        <div class="snowflake" style="left: 40%; animation-duration: 13s;"></div>
+        <div class="snowflake" style="left: 45%; animation-duration: 19s;"></div>
+        <div class="snowflake" style="left: 50%; animation-duration: 22s;"></div>
+        <div class="snowflake" style="left: 55%; animation-duration: 14s;"></div>
+        <div class="snowflake" style="left: 60%; animation-duration: 12s;"></div>
+        <div class="snowflake" style="left: 65%; animation-duration: 18s;"></div>
+        <div class="snowflake" style="left: 70%; animation-duration: 15s;"></div>
+        <div class="snowflake" style="left: 75%; animation-duration: 20s;"></div>
+        <div class="snowflake" style="left: 80%; animation-duration: 13s;"></div>
+        <div class="snowflake" style="left: 85%; animation-duration: 17s;"></div>
+        <div class="snowflake" style="left: 90%; animation-duration: 10s;"></div>
+        <div class="snowflake" style="left: 95%; animation-duration: 12s;"></div>
+        <div class="snowflake" style="left: 100%; animation-duration: 18s;"></div>
+    </div>
+
+    <!-- Main content -->
+    <div class="container">
+        <h1>WELCOME TO MY WEBPAGE!</h1>
+        <a href="Draw.html">
+            <button>Get started</button>
+        </a>
+    </div>
 </body>
 </html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario Game</title>
+    <style>
+        /* Your CSS styles here */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .game {
+            width: 100%;
+            height: 100vh;
+            border-bottom: 150px solid rgb(24, 174, 24);
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(#87ceeb, #e0f6ff);
+            text-align: center; /* Center the button */
+        }
+
+        .pipe-game {
+            position: absolute;
+            bottom: 0;
+            width: 80px;
+            animation: pipe-animation 1.5s infinite linear;
+        }
+
+        .super-mario {
+            width: 150px;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .jump-mario {
+            animation: mario-animation 500ms ease-out;
+        }
+
+        .clouds-game {
+            position: absolute;
+            width: 550px;
+            animation: clouds-animation 18s infinite linear;
+        }
+
+        #restartButton, #continueButton {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none; /* Initially hidden */
+            padding: 20px 30px;
+            font-size: 1.2em;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        #restartButton {
+            top: 60%; /* Adjusted top position */
+            background-color: #4CAF50;
+            color: white;
+            margin-bottom: 20px; /* Add space between buttons */
+        }
+
+        #continueButton {
+            top: 75%;
+            background-color: #008CBA; /* Blue color */
+            color: white;
+        }
+
+      
+
+        #gameOverMessage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3em;
+            color: red;
+            font-weight: bold; /* Make the text bolder */
+        }
+
+        @keyframes pipe-animation {
+            from {
+                right: -80px;
+            }
+
+            to {
+                right: 100%;
+            }
+        }
+
+        @keyframes clouds-animation {
+            from {
+                right: -550px;
+            }
+
+            to {
+                right: 100%;
+            }
+        }
+
+        @keyframes mario-animation {
+            0% {
+                bottom: 0;
+            }
+            40% {
+                bottom: 180px;
+            }
+            50% {
+                bottom: 180px;
+            }
+            60% {
+                bottom: 180px;
+            }
+            70% {
+                bottom: 180px;
+            }
+            100% {
+                bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game">
+        <img src="clouds-gamer.jpg" alt="clouds" class="clouds-game">
+        <img src="super-mario.gif" alt="o super mario" class="super-mario">
+        <img src="pipe-game.jpg" alt="pipe" class="pipe-game">
+        <button id="restartButton">Restart Game</button>
+      
+        <button id="continueButton">Continue to Webpage</button>
+    </div>
+    <script>
+        const mario = document.querySelector(".super-mario");
+        const pipe = document.querySelector(".pipe-game");
+        const gameScreen = document.querySelector(".game");
+        const restartButton = document.getElementById("restartButton");
+        const continueButton = document.getElementById("continueButton");
+        const orText = document.getElementById("orText");
+
+        let marioXPosition = 0;
+        let marioSpeed = 1.5;
+        let gameRunning = true;
+        let pipeSpeed = 1.2;
+        let speedIncrement = 0;
+
+        const jump = () => {
+            if (!mario.classList.contains("jump-mario") && gameRunning) {
+                mario.classList.add("jump-mario");
+                setTimeout(() => {
+                    mario.classList.remove("jump-mario");
+                }, 500);
+            }
+        };
+
+        function gameLoop() {
+            if (!gameRunning) return;
+
+            const pipePosition = pipe.offsetLeft;
+            const pipeTop = pipe.offsetTop;
+            const pipeHeight = pipe.offsetHeight;
+
+            const marioRect = mario.getBoundingClientRect();
+            const pipeRect = pipe.getBoundingClientRect();
+
+            const collisionMargin = 10;
+
+            if (
+                marioRect.right + collisionMargin > pipeRect.left &&
+                marioRect.left - collisionMargin < pipeRect.right &&
+                marioRect.bottom + collisionMargin > pipeRect.top &&
+                marioRect.top - collisionMargin < pipeRect.bottom
+            ) {
+                gameOver();
+                console.log("Collision detected!");
+                console.log("Mario Rect:", marioRect);
+                console.log("Pipe Rect:", pipeRect);
+            }
+
+            marioXPosition += marioSpeed;
+            mario.style.left = marioXPosition + "px";
+            pipe.style.animationDuration = (1.5 / pipeSpeed) + "s";
+            requestAnimationFrame(gameLoop);
+        }
+
+        function resetGame() {
+            location.reload();
+        }
+
+        function gameOver() {
+            gameRunning = false;
+            pipe.style.animation = "none";
+            pipe.style.left = `${pipe.offsetLeft}px`;
+            mario.style.animation = "none";
+            mario.style.bottom = `${parseInt(window.getComputedStyle(mario).bottom.replace("px", ""))}px`;
+            mario.src = "mario-game-over.jpg";
+            mario.style.width = "75px";
+            mario.style.marginLeft = "45px";
+
+            const gameOverMessage = document.createElement("div");
+            gameOverMessage.id = "gameOverMessage"; // Add ID for styling
+            gameOverMessage.textContent = "Game Over!";
+            gameOverMessage.style.position = "absolute";
+            gameOverMessage.style.top = "50%";
+            gameOverMessage.style.left = "50%";
+            gameOverMessage.style.transform = "translate(-50%, -50%)";
+            gameOverMessage.style.fontSize = "3em";
+            gameOverMessage.style.color = "red";
+            gameScreen.appendChild(gameOverMessage);
+            restartButton.style.display = "block";
+            continueButton.style.display = "block";
+            orText.style.display = "block";
+        }
+
+        continueButton.addEventListener("click", () => {
+            window.location.href = "Drawing.html"; // Replace with your URL
+        });
+
+        document.addEventListener("touchstart", jump);
+        restartButton.addEventListener("click", resetGame);
+        gameLoop();
+    </script>
+</body>
+</html>

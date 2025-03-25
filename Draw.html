@@ -6,7 +6,6 @@
     <title>My Artistic Hobbies: Painting & Drawing</title>
     <style>
         body {
-          
             font-family: cursive;
             margin: 0;
             padding: 0;
@@ -97,7 +96,7 @@
         footer a:hover {
             text-decoration: underline;
         }
-         .red {
+        .red {
             padding: 20px 40px;
             font-size: 100px;
             background-color: #ff6347;
@@ -117,45 +116,49 @@
         .wut {
           font-size: 100px;
         }
+        #playAudioButton {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 30px;
+            font-size: 2em;
+            background-color: skyblue;
+            color: skyblue;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-
-    <!-- Header Section -->
+    <audio id="backgroundMusic" src="blue_.mp3" preload="auto"></audio>
+    <button id="playAudioButton">Play Background Music</button>
     <header>
         <h1>Welcome to My Artistic World</h1>
         <p>Exploring the beauty of Painting & Drawing through creativity!</p>
     </header>
+    <div class="container">
         <div class="section" id="drawing">
             <h2>Drawing: The Power of Lines</h2>
             <h1 class="description">Drawing allows me to capture the fine details, creating intricate designs, portraits, and illustrations. It’s my way of exploring the world through pencil and charcoal, where every line has its purpose. Check out some of my sketches below!</h1>
             <div class="gallery">
                 <img src="Goku.jpg" alt="Drawing 1">
-                
                 <img src="Goku2.jpg" alt="Drawing 2">
-                
                 <img src="Goku3.jpg" alt="Drawing 3">
-<div class="gallery">
-<center>
-<h1 class="big">How to Improve drawing skills</h1>
- <img src="Hitler.jpg" alt="cat hitler">
- <div>
-<video width="640" height="360" controls>
-    <source src="video.mp4" type="video/mp4">
-  </video>
-  </center>
+            </div>
+            <div class="gallery">
+                <center>
+                    <h1 class="big">How to Improve drawing skills</h1>
+                    <img src="Hitler.jpg" alt="cat hitler">
+                    <video width="640" height="360" controls>
+                        <source src="video.mp4" type="video/mp4">
+                    </video>
+                </center>
             </div>
             <button class="action-button" onclick="alert('More sketches coming soon! Stay tuned.')">Explore More Drawings</button>
         </div>
 
-    </div>
-
-    <!-- Main Content Container -->
-    <div class="container">
-
-        <!-- Painting Section -->
         <div class="section" id="painting">
-            <h2>Digital Painting: A World of Colors</h2>
+            <h2>Painting: A World of Colors</h2>
             <h1 class="description">Painting is my way of expressing emotions, telling stories, and bringing a splash of colors to life. Each brushstroke holds a piece of my soul, from abstract landscapes to realistic portraits. Below are some of my favorite works!</h1>
             <div class="gallery">
                 <img src="Paint1.jpg" alt="Painting 1">
@@ -164,23 +167,25 @@
             </div>
             <button class="action-button" onclick="alert('Stay tuned for more beautiful paintings!')">Discover More Paintings</button>
         </div>
-
-        <!-- Drawing Section -->
-  
-        </div>
-
     </div>
     <center>
-      <a href="Exit.html"><button class="red">Exit</button></a>
-      <h2 class="small">Or</h2>
-      <h2 class="small">Do you want to play a game?</h2>
-<a href="Flappy.html"><button class="red">Flappy Box</button></a>
-</center>
-    <!-- Footer Section -->
+        <a href="Exit.html"><button class="red">Exit</button></a>
+        <h2 class="small">Or</h2>
+        <h2 class="small">Do you want to play a game?</h2>
+        <a href="Flappy.html"><button class="red">Flappy Box</button></a>
+    </center>
     <footer class="wut">
         <p>&copy; 2025 My Artistic Journey. All Rights Reserved.</p>
         <p>Want to know more about my creative process? <a href="mailto:dext4172010@gmail.com">Contact me</a>.</p>
     </footer>
 
+    <script>
+        const playAudioButton = document.getElementById('playAudioButton');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+
+        playAudioButton.addEventListener('click', () => {
+            backgroundMusic.play().catch(error => console.error("Autoplay failed:", error));
+        });
+    </script>
 </body>
 </html>

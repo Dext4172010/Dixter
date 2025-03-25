@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Palagi</title>
+<style>
+body {
+    font-family: sans-serif;
+    text-align: center;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0; /* Remove default body margins */
+}
+
+#album-art {
+    width: 400px; /* Increased width */
+    height: 400px; /* Increased height */
+    margin-bottom: 30px; /* Increased margin */
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+}
+
+#player-controls {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Increased gap */
+    margin-top: 20px; /* Increased margin */
+}
+
+.control-button {
+    padding: 15px 30px; /* Increased padding */
+    font-size: 18px; /* Increased font size */
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 10px; /* More rounded corners */
+    cursor: pointer;
+}
+
+.control-button:active {
+    background-color: black;
+}
+
+h1 {
+    font-size: 2.5em; /* Larger heading */
+    margin-bottom: 20px; /* Added margin */
+    color:white;
+    font-family: cursive;
+}
+
+audio {
+    width: 400px; /* Increased width for the audio player */
+    margin-bottom: 20px; /* Added margin below the audio player */
+}
+</style>
+</head>
+<body>
+
+<h1>Palagi-Tj Monterde</h1>
+<img id="album-art" src="Palagi.jpg" alt="Album Art">
+
+<audio id="audioPlayer" src="Palagii.mp3" controls loop>
+    Your browser does not support the audio element.
+</audio>
+
+<div id="player-controls">
+    <button class="control-button" onclick="playPause()">Play</button>
+    <button class="control-button" onclick="stopAudio()">Pause</button>
+</div>
+
+<script>
+const audioPlayer = document.getElementById('audioPlayer');
+
+function playPause() {
+    if (audioPlayer.paused) {
+        audioPlayer.play();
+    } else {
+        audioPlayer.play();
+    }
+}
+
+function stopAudio() {
+   if (audioPlayer.pause) {
+    audioPlayer.pause();
+    } else {
+      audioPlayer.pause();
+    }// Reset to the beginning
+}// ... (Your JavaScript code remains the same) ...
+</script>
+
+</body>
+  </html>
+    
